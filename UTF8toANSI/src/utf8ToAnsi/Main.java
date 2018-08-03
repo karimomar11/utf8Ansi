@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 
 /**
- * 
+ * Main-Method class, excecutes the program
  * @author Karim Omar
  * @version 2018-08-02
  *
@@ -26,7 +26,11 @@ import javax.swing.JFileChooser;
 public class Main {
 	
 	public static void main(String[] args) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-		
+		//changeing java charset to ANSI
+		System.setProperty("file.encoding","Cp1252");
+		Field charset = Charset.class.getDeclaredField("defaultCharset");
+		charset.setAccessible(true);
+		charset.set(null,null);
 		Correction c= new Correction();
 		c.chooseFile();
 		String name=c.getNewName().replace("\\","\\\\");
@@ -35,7 +39,6 @@ public class Main {
 		try(PrintWriter out=new PrintWriter(name)){
 			out.write(text);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 
 /**
- * 
+ * necessary methods for converting
  * @author Karim Omar
  * @version 2018-08-02
  *
@@ -18,10 +18,14 @@ public class Correction {
 	
 	private String text;
 	private String newName;
+	/**
+	 * Method for correcting the input text
+	 * @param csv input text
+	 * @return corrected text
+	 */
 	public static String correctedCSV(String csv) {
 		ArrayList<String> list= new ArrayList<String>();
 		
-		//int l=csv.length();
 		String correct = csv;
 			
 		list.add(correct);
@@ -56,6 +60,10 @@ public class Correction {
 		return correct;
 	}
 	
+	/**
+	 * Method which is choosing the file to correct
+	 * and sets the attributes
+	 */
 	public void chooseFile() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		String[] data = new String[2];
 		//changeing java charset to UTF-8
@@ -124,6 +132,8 @@ public class Correction {
 		
 	}
 
+	//getters and setters
+	
 	public String getText() {
 		return text;
 	}
