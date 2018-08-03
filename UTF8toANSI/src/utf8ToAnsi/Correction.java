@@ -1,11 +1,13 @@
 package utf8ToAnsi;
 import java.io.BufferedReader;
+import java.io.FileFilter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * necessary methods for converting
@@ -103,8 +105,7 @@ public class Correction {
 						//putting every line aligned into string 
 						t+=Correction.correctedCSV(list.get(i))+" \n";
 					}
-					
-					newName=file.replace(name, "ansi_"+name);
+					newName=file.replace(name, "ANSI_FILES\\\\ansi_"+name);
 					
 					data[0]= t;
 					data[1]=newName;
