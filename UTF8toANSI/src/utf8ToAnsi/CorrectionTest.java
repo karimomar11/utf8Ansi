@@ -7,35 +7,36 @@ import org.junit.Test;
 import utf8ToAnsi.Correction;
 
 public class CorrectionTest {
-	Correction c=new Correction();
+	Correction c;
+
 	@Before
 	public void setUp() {
-		Correction c=new Correction();
+		c = new Correction();
 	}
-	
+
 	@Test
 	public void test() {
-		String t2="ÄÖÜäöüß ÄÖÜäöüß ÄÖÜäöüß";
-		assertEquals(Correction.correctedCSV(t2),"AeOeUeaeoeuess AeOeUeaeoeuess AeOeUeaeoeuess");
+		String t2 = "ÄÖÜäöüß ÄÖÜäöüß ÄÖÜäöüß";
+		assertEquals(Correction.correctedCSV(t2), "AeOeUeaeoeuess AeOeUeaeoeuess AeOeUeaeoeuess");
 	}
-	
+
 	@Test
 	public void testGetText() {
-		String t="AEIOU";
+		String t = "AEIOU";
 		c.setText(t);
 		assertEquals(c.getText(), t);
 	}
-	
+
 	@Test
 	public void testGetNewName() {
-		String t="AEIOU";
+		String t = "AEIOU";
 		c.setNewName(t);
 		assertEquals(c.getNewName(), t);
 	}
-	
+
 	@After
 	public void after() {
 		System.out.println("Finish");
-		c=null;
+		c = null;
 	}
 }
