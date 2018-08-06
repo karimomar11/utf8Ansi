@@ -5,6 +5,8 @@ import utf8ToAnsi.Correction;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -29,15 +31,19 @@ public class CorrectionExec {
 		
 		Correction c = new Correction();
 		c.chooseFile();
-		String name = c.getNewName().replace("\\", "\\\\");
-		String text = c.getText();
-		try (PrintWriter out = new PrintWriter(name)) {
-			out.write(text);
-
-			JOptionPane.showMessageDialog(null, "Konvertieren abgeschlossen!");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		ArrayList<String> name = c.getNewName();
+		ArrayList<String> text = c.getText();
+		
+		for(int i=0; i<name.size();i++) {
+			String name1=name.get(i);
+			String text1=text.get(i);
+			try (PrintWriter out = new PrintWriter(name1)) {
+				out.write(text1);
+	
+				JOptionPane.showMessageDialog(null, "Konvertieren abgeschlossen!");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
-
 	}
 }

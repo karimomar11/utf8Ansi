@@ -18,12 +18,12 @@ import java.util.ArrayList;
  */
 public class Correction {
 
-	private String text;
-	private String newName;
+	private ArrayList<String> text;
+	private ArrayList<String> newName;
 	
 	public Correction() {
-		this.text="DEFAULT";
-		this.newName="NEWNAME";
+		this.text=null;
+		this.newName=null;
 	}
 	/**
 	 * Method for correcting the input text
@@ -73,6 +73,8 @@ public class Correction {
 	 */
 	public void chooseFile()
 			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		this.text=new ArrayList<String>();
+		this.newName=new ArrayList<String>();
 		String[] data = new String[3];
 		// changeing java charset to UTF-8
 		System.setProperty("file.encoding", "UTF-8");
@@ -81,71 +83,74 @@ public class Correction {
 		charset.set(null, null);
 
 		// open file
-		String file = "";
+		String path = "C:\\\\Users\\\\administrator\\\\Documents\\\\TESTING";
 		String name = "";
 		String newName = "";
 		String t = "";
-
-		/**
-		 * JFileChooser chooser =new JFileChooser(); int returnValue =
-		 * chooser.showOpenDialog(null);
-		 * 
-		 * if(returnValue==JFileChooser.APPROVE_OPTION) {
-		 * file=chooser.getSelectedFile().getAbsolutePath();
-		 * name=chooser.getSelectedFile().getName(); }
-		 */
+		ArrayList<String> filesOfDir=new ArrayList<String>();
+		File[] files = new File(path).listFiles();
+		for(File f:files) {
+			if(f.isFile()) {
+				filesOfDir.add(f.getAbsolutePath());
+			}
+		}
 
 		//file = args[0];
-
-		ArrayList<String> list = new ArrayList<String>();
-		String text = null;
-
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-
-			// running through every line of this file
-			while ((text = br.readLine()) != null) {
-				// saving every line into list
-				list.add(text);
-			}
-
-			for (int i = 0; i < list.size(); i++) {
-				// putting every line aligned into string
-				t += Correction.correctedCSV(list.get(i)) + " \n";
-			}
-
-			File path = new File(file);
+		for(int i=0;i<filesOfDir.size();i++) {
+			ArrayList<String> list = new ArrayList<String>();
+			String text = null;
+			String actualFile = filesOfDir.get(i);
+			try (BufferedReader br = new BufferedReader(new FileReader(actualFile))) {
 	
-			name = path.getName();
-			newName = file.replace(name, "ANSI_FILES\\\\ansi_" + name);
-
-			data[0] = t;
-			data[1] = newName;
-
-			setText(data[0]);
-			setNewName(data[1]);
-			
-			path.deleteOnExit();
-		} catch (IOException e) {
-			e.printStackTrace();
+				// running through every line of this file
+				while ((text = br.readLine()) != null) {
+					// saving every line into list
+					list.add(text);
+				}
+	
+				for (int ii = 0; ii < list.size(); ii++) {
+					// putting every line aligned into string
+					t += Correction.correctedCSV(list.get(ii)) + " \n";
+				}
+	
+				File path1 = new File(actualFile);
+		
+				name = path1.getName();
+				newName = actualFile.replace(name, "ANSI_FILES\\\\ansi_" + name);
+	
+				data[0] = t;
+				data[1] = newName;
+	
+				//setText(data[0]);
+				//setNewName(data[1]);
+				this.text.add(t);
+				this.newName.add(newName.replace("\\", "\\\\"));
+				
+				t="";
+				
+				path1.deleteOnExit();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
 
 	// getters and setters
 
-	public String getText() {
+	public ArrayList<String> getText() {
 		return text;
 	}
 
-	public void setText(String text) {
+	public void setText(ArrayList<String> text) {
 		this.text = text;
 	}
 
-	public String getNewName() {
+	public ArrayList<String> getNewName() {
 		return newName;
 	}
 
-	public void setNewName(String newName) {
+	public void setNewName(ArrayList<String> newName) {
 		this.newName = newName;
 	}
 }

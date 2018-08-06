@@ -20,20 +20,6 @@ public class CorrectionTest {
 		assertEquals(Correction.correctedCSV(t2), "AeOeUeaeoeuess AeOeUeaeoeuess AeOeUeaeoeuess");
 	}
 
-	@Test
-	public void testGetText() {
-		String t = "AEIOU";
-		c.setText(t);
-		assertEquals(c.getText(), t);
-	}
-
-	@Test
-	public void testGetNewName() {
-		String t = "AEIOU";
-		c.setNewName(t);
-		assertEquals(c.getNewName(), t);
-	}
-
 	@After
 	public void after() {
 		System.out.println("Finish");
