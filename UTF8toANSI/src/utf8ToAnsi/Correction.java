@@ -71,7 +71,7 @@ public class Correction {
 	/**
 	 * Method which is choosing the file to correct and sets the attributes
 	 */
-	public void chooseFile(String[] args)
+	public void chooseFile()
 			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		String[] data = new String[3];
 		// changeing java charset to UTF-8
@@ -95,7 +95,7 @@ public class Correction {
 		 * name=chooser.getSelectedFile().getName(); }
 		 */
 
-		file = args[0];
+		//file = args[0];
 
 		ArrayList<String> list = new ArrayList<String>();
 		String text = null;
@@ -114,6 +114,7 @@ public class Correction {
 			}
 
 			File path = new File(file);
+	
 			name = path.getName();
 			newName = file.replace(name, "ANSI_FILES\\\\ansi_" + name);
 

@@ -28,7 +28,7 @@ public class CorrectionExec {
 		
 		
 		Correction c = new Correction();
-		c.chooseFile(args);
+		c.chooseFile();
 		String name = c.getNewName().replace("\\", "\\\\");
 		String text = c.getText();
 		try (PrintWriter out = new PrintWriter(name)) {
