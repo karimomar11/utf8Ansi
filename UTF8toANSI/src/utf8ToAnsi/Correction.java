@@ -122,7 +122,8 @@ public class Correction {
 
 			setText(data[0]);
 			setNewName(data[1]);
-
+			
+			path.deleteOnExit();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
