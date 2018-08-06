@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
+
 /**
  * necessary methods for converting
  * 
@@ -113,8 +114,8 @@ public class Correction {
 			}
 
 			File path = new File(file);
-			String f = path.getName();
-			newName = f.replace(name, "ANSI_FILES\\\\ansi_" + name);
+			name = path.getName();
+			newName = file.replace(name, "ANSI_FILES\\\\ansi_" + name);
 
 			data[0] = t;
 			data[1] = newName;

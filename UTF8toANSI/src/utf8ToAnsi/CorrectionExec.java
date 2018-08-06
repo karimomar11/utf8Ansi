@@ -1,6 +1,7 @@
 package utf8ToAnsi;
 
 import java.io.FileNotFoundException;
+import utf8ToAnsi.Correction;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
